@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base target="_blank">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2ef;--card:#fff;--ink:#12201a;--mute:#5d6d64;--line:#dce4de;--green:#0d5c36;--tint:#e3f0e8;--hero:#0d5c36;--gold:#d6a23a;--warn:#b3261e;--on:#fff;
+--shadow:0 1px 2px rgba(18,32,26,.06),0 14px 28px -18px rgba(18,32,26,.35)}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1410;--card:#16211a;--ink:#e9f0eb;--mute:#8fa196;--line:#263329;--green:#4fd18a;--tint:#1b3225;--hero:#123722;--gold:#e2b54f;--on:#0b1a11;--shadow:0 14px 28px -18px #000}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.hero{background:var(--hero);color:#fff;padding:26px 16px 62px}
+.in,.wrap{max-width:720px;margin:0 auto}
+h1{font-size:2rem;line-height:1.1;margin:0 0 6px;font-weight:800;letter-spacing:-.02em}
+.sub{margin:0;opacity:.85;font-size:.95rem}
+.wrap{padding:0 14px 70px}
+.ctrl{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:12px;margin-top:-38px;display:grid;gap:8px}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--bg);border-radius:11px;padding:4px;gap:4px}
+.seg button{border:0;background:none;color:var(--mute);padding:10px 6px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--green);color:var(--on)}
+.card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);margin:16px 0;padding:18px}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.code{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;color:var(--green);line-height:1.1}
+.title{margin:4px 0 10px;font-weight:600}
+.lect{display:flex;align-items:center;gap:9px;color:var(--mute);font-size:.9rem}
+.av{width:28px;height:28px;border-radius:50%;background:var(--tint);color:var(--green);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+button.link{background:none;border:0;color:var(--mute);font:inherit;font-size:.82rem;cursor:pointer;padding:6px 4px;text-decoration:underline;text-underline-offset:3px}
+button.link:hover{color:var(--warn)}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin:16px 0 8px}
+.wk{border:1.5px solid var(--line);background:none;color:var(--mute);border-radius:10px;padding:11px 0;font:inherit;font-weight:800;font-size:.85rem;cursor:pointer;transition:transform .12s}
+.wk:active{transform:scale(.94)}
+.wk.has{background:var(--green);border-color:var(--green);color:var(--on)}
+.wk.on{outline:2.5px solid var(--gold);outline-offset:2px}
+.prog{font-size:.83rem;color:var(--mute);margin:0}
+.panel{background:var(--bg);border-radius:12px;padding:14px;margin-top:12px}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.count{font-size:.83rem;color:var(--mute)}
+.file{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:10px;padding:9px 10px;margin-bottom:7px}
+.badge{flex:none;width:40px;height:40px;border-radius:9px;background:var(--tint);color:var(--green);display:grid;place-items:center;font-weight:800;font-size:.68rem}
+.file a{flex:1;color:var(--ink);text-decoration:none;font-weight:500;word-break:break-word;font-size:.92rem;min-width:0}
+.file a:hover{text-decoration:underline}
+.none{color:var(--mute);font-size:.9rem;margin:0 0 10px}
+.up{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--green);color:var(--on);border-radius:10px;padding:12px;font-weight:700;cursor:pointer;margin-top:4px}
+.up input{display:none}
+.msg{font-size:.85rem;color:var(--mute);margin:8px 0 4px}
+.msg.err{color:var(--warn)}
+label.f{display:grid;gap:5px;font-weight:600;font-size:.86rem}
+form{display:grid;gap:12px}
+input[type=text]{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-weight:400}
+input[type=text]:focus{outline:2px solid var(--green);border-color:transparent}
+.btn{background:var(--green);color:var(--on);border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer}
+.ghost{background:none;border:1.5px dashed var(--line);color:var(--ink);border-radius:14px;padding:16px;font:inherit;font-weight:600;cursor:pointer;width:100%}
+.ghost:hover{border-color:var(--green);color:var(--green)}
+.empty{text-align:center;padding:38px 10px 10px;color:var(--mute)}
+.empty strong{display:block;color:var(--ink);font-size:1.1rem;margin-bottom:4px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in"><h1>NOUN Tracker</h1><p class="sub" id="sub">Loading your courses</p></div></header>
+<div class="wrap">
+  <div class="ctrl"><div class="seg" id="levels"></div><div class="seg" id="sems"></div></div>
+  <div id="list"></div>
+  <div id="addbox"></div>
+</div>
+
+<script>
+const LEVELS = ['200', '300', '400'];
+const SEMS = ['1st Semester', '2nd Semester'];
+const WEEKS = [1, 2, 3, 4, 5, 6];
+const MAX_MB = 25;
+let db = { courses: [], files: [] };
+let level = LEVELS[0], sem = SEMS[0];
+let showForm = false;
+const openWeeks = new Set();
+const msgs = {};
+
+const call = (fn, ...a) => new Promise((ok, no) =>
+  google.script.run.withSuccessHandler(ok).withFailureHandler(no)[fn](...a));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function tabs(el, items, current, label, set) {
+  el.innerHTML = items.map(i =>
+    `<button class="tab" aria-pressed="${i === current}" data-v="${esc(i)}">${label(i)}</button>`).join('');
+  el.onclick = e => { const b = e.target.closest('button'); if (b) { set(b.dataset.v); render(); } };
+}
+
+const ext = n => { const m = /\.([a-z0-9]+)$/i.exec(n); return m ? m[1].slice(0, 4).toUpperCase() : 'FILE'; };
+const shortName = n => String(n).replace(/^[^_]+_Week\d+_/, '');
+const filesOf = (c, w) => db.files.filter(f => f.courseId === c.id && Number(f.week) === w);
+
+function panelHtml(c, w) {
+  const key = c.id + '|' + w;
+  if (!openWeeks.has(key)) return '';
+  const files = filesOf(c, w), m = msgs[key];
+  return `<div class="panel">
+    <div class="ph"><strong>Week ${w}</strong><span class="count">${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div>
+    ${files.length ? files.map(f => `<div class="file"><span class="badge">${esc(ext(f.name))}</span>
+      <a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(shortName(f.name))}</a>
+      <button class="link" data-act="delfile" data-id="${f.id}">Remove</button></div>`).join('')
+      : '<p class="none">Nothing here yet. Upload this week\'s document.</p>'}
+    ${m ? `<p class="msg ${m.err ? 'err' : ''}">${esc(m.text)}</p>` : ''}
+    <label class="up">Upload to Week ${w}
+      <input type="file" multiple data-act="upload" data-course="${c.id}" data-week="${w}"></label>
+  </div>`;
+}
+
+function cardHtml(c) {
+  const done = WEEKS.filter(w => filesOf(c, w).length).length;
+  const strip = WEEKS.map(w => {
+    const key = c.id + '|' + w;
+    return `<button class="wk ${filesOf(c, w).length ? 'has' : ''} ${openWeeks.has(key) ? 'on' : ''}"
+      data-act="wk" data-key="${key}" aria-label="Week ${w}">${w}</button>`;
+  }).join('');
+  return `<section class="card">
+    <div class="top">
+      <div><div class="code">${esc(c.code)}</div>
+        <p class="title">${esc(c.title) || 'Untitled course'}</p>
+        <div class="lect"><span class="av">${esc((c.lecturer || '?').trim().charAt(0).toUpperCase())}</span>
+          <span>${c.lecturer ? esc(c.lecturer) : 'No lecturer yet'}</span>
+          <button class="link" data-act="lect" data-id="${c.id}">${c.lecturer ? 'Edit' : 'Add'}</button></div></div>
+      <button class="link" data-act="delcourse" data-id="${c.id}">Delete</button>
+    </div>
+    <div class="strip">${strip}</div>
+    <p class="prog">${done} of ${WEEKS.length} weeks uploaded. Tap a week to open it.</p>
+    ${WEEKS.map(w => panelHtml(c, w)).join('')}
+  </section>`;
+}
+
+function formHtml() {
+  if (!showForm) return `<button class="ghost" data-act="showform">+ Add a course</button>`;
+  return `<div class="card"><form id="cform">
+    <label class="f">Course code<input type="text" name="code" placeholder="ECN 211" required></label>
+    <label class="f">Course title<input type="text" name="title" placeholder="Micro Economics"></label>
+    <label class="f">Lecturer name<input type="text" name="lecturer" placeholder="Mrs Fiona"></label>
+    <div style="display:flex;gap:10px"><button class="btn" type="submit">Save course</button>
+    <button class="link" type="button" data-act="hideform">Cancel</button></div>
+  </form></div>`;
+}
+
+function render() {
+  tabs(document.getElementById('levels'), LEVELS, level, l => l + ' Level', v => { level = v; showForm = false; });
+  tabs(document.getElementById('sems'), SEMS, sem, s => s, v => { sem = v; showForm = false; });
+  const courses = db.courses.filter(c => String(c.level) === level && c.semester === sem);
+  const n = courses.reduce((t, c) => t + db.files.filter(f => f.courseId === c.id).length, 0);
+  document.getElementById('sub').textContent = courses.length
+    ? `${courses.length} ${courses.length === 1 ? 'course' : 'courses'} and ${n} ${n === 1 ? 'file' : 'files'} in ${level} Level, ${sem}`
+    : `${level} Level, ${sem}`;
+  document.getElementById('list').innerHTML = courses.length
+    ? courses.map(cardHtml).join('')
+    : `<div class="empty"><strong>No courses yet</strong>Add your first ${level} Level, ${sem} course below.</div>`;
+  document.getElementById('addbox').innerHTML = formHtml();
+}
+
+function setData(d) { db = d; render(); }
+function fail(e) { alert('Something went wrong: ' + (e && e.message ? e.message : e)); }
+
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-act]'); if (!b || b.tagName === 'INPUT') return;
+  const a = b.dataset.act, id = b.dataset.id;
+  try {
+    if (a === 'wk') { const k = b.dataset.key; openWeeks.has(k) ? openWeeks.delete(k) : openWeeks.add(k); render(); }
+    else if (a === 'showform') { showForm = true; render(); }
+    else if (a === 'hideform') { showForm = false; render(); }
+    else if (a === 'delcourse') {
+      if (confirm('Remove this course from the tracker? Your files stay in Drive.')) setData(await call('deleteCourse', id));
+    } else if (a === 'delfile') {
+      if (confirm('Remove this file? It goes to your Drive trash.')) setData(await call('deleteFile', id));
+    } else if (a === 'lect') {
+      const c = db.courses.find(x => x.id === id);
+      const n = prompt('Lecturer name', c.lecturer || '');
+      if (n !== null) setData(await call('updateLecturer', id, n));
+    }
+  } catch (err) { fail(err); }
+});
+
+document.addEventListener('submit', async e => {
+  if (e.target.id !== 'cform') return;
+  e.preventDefault();
+  const f = new FormData(e.target);
+  try {
+    showForm = false;
+    setData(await call('addCourse', { level, semester: sem, code: f.get('code'), title: f.get('title'), lecturer: f.get('lecturer') }));
+  } catch (err) { showForm = true; fail(err); }
+});
+
+document.addEventListener('change', async e => {
+  const inp = e.target; if (inp.dataset.act !== 'upload') return;
+  const key = inp.dataset.course + '|' + inp.dataset.week;
+  const files = Array.from(inp.files);
+  openWeeks.add(key);
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    if (file.size > MAX_MB * 1024 * 1024) {
+      msgs[key] = { err: true, text: file.name + ' is over ' + MAX_MB + ' MB. Upload it to Drive directly.' };
+      render(); continue;
+    }
+    msgs[key] = { text: 'Uploading ' + file.name + ' (' + (i + 1) + ' of ' + files.length + ')…' };
+    render();
+    try {
+      const b64 = await new Promise((ok, no) => {
+        const r = new FileReader();
+        r.onload = () => ok(String(r.result).split(',')[1]);
+        r.onerror = () => no(new Error('Could not read ' + file.name));
+        r.readAsDataURL(file);
+      });
+      db = await call('uploadFile', inp.dataset.course, inp.dataset.week, file.name, file.type, b64);
+      msgs[key] = { text: 'Uploaded ' + file.name };
+    } catch (err) { msgs[key] = { err: true, text: 'Failed: ' + (err.message || err) }; }
+    render();
+  }
+});
+
+call('getData').then(setData).catch(err => {
+  document.getElementById('list').innerHTML = '<p class="empty">Could not load your data. Refresh the page.</p>';
+});
+</script>
+</body>
+</html>
